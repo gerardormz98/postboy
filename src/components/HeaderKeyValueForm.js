@@ -4,12 +4,14 @@ import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import Autosuggest from 'react-autosuggest';
+import PostboyContext from "../context/postboyContext";
 import PostboyTabContext from "../context/postboyTabContext";
-import { editHeader, removeHeader } from "../actions/headers";
+import { editTabHeader, removeTabHeader } from "../actions/tab";
 import { standardHeaders } from "../utils/constants";
 
 const KeyValueForm = ({ id, headerKey, headerValue }) => {
-    const { dispatchHeaders } = useContext(PostboyTabContext);
+    const { dispatchTabs } = useContext(PostboyContext);
+    const { tab } = useContext(PostboyTabContext);
     const [suggestions, setSuggestions] = useState([]);
 
     const getSuggestions = (value) => {
@@ -38,11 +40,11 @@ const KeyValueForm = ({ id, headerKey, headerValue }) => {
     };
 
     const handleEditHeader = ({ key, value }) => {
-        dispatchHeaders(editHeader(id, key, value));
+        dispatchTabs(editTabHeader(tab.id, id, key, value));
     };
 
     const handleRemoveHeader = () => {
-        dispatchHeaders(removeHeader(id));
+        dispatchTabs(removeTabHeader(tab.id, id));
     };
 
     return (

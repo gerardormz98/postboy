@@ -1,7 +1,7 @@
-import { Guid } from "js-guid";
+import { getTabDefaultState, getTabHeaderDefaultState, getTabBodyParamDefaultState, getTabResponseDefaultState } from "../utils/defaults";
+import { isJsonParsable } from "../utils/utils";
 
-/*
-
+/*------------------------TAB STATE EXAMPLE------------------------
 [
     {
         id: '1',
@@ -34,42 +34,199 @@ import { Guid } from "js-guid";
         }
     }
 ]
+-------------------------------------------------------------------*/
 
-*/
 
 const tabReducer = (state, action) => {
     switch (action.type) {
+
+        // Tab
+
         case "ADD_TAB":
-            return [...state, { id: Guid.newGuid().toString(), method: "GET", title: "New request", isLoading: false }];
-        case "EDIT_TAB":
+            return [...state, getTabDefaultState()];
+        case "SET_TAB_TITLE":
             return state.map((tab) => {
-                if (tab.id === action.id) {
+                if (tab.id === action.tabId) {
                     const tabLimitChars = 20;
                     const title = action.title.substring(0, tabLimitChars) + (action.title.length > tabLimitChars ? "..." : "")
-
                     return { 
-                        id: tab.id, 
-                        method: action.method, 
-                        title,
-                        isLoading: tab.isLoading
+                        ...tab,
+                        title
                     };
                 }
-
                 return tab;
             });
-        case "REMOVE_TAB":
-            return state.filter((tab) => tab.id !== action.id);
-        case "SET_IS_LOADING_TAB":
+        case "SET_TAB_IS_LOADING":
             return state.map((tab) => {
-                if (tab.id === action.id) {
+                if (tab.id === action.tabId) {
                     return { 
                         ...tab,
                         isLoading: action.isLoading
                     };
                 }
-
                 return tab;
             });
+        case "REMOVE_TAB":
+            return state.filter((tab) => tab.id !== action.tabId);
+
+        // Request
+
+        case "SET_TAB_REQUEST":
+            return state.map((tab) => {
+                if (tab.id === action.tabId) {
+                    return { 
+                        ...tab,
+                        request: {
+                            method: action.method,
+                            url: action.url
+                        }
+                    };
+                }
+                return tab;
+            });
+        
+        // Headers
+
+        case "ADD_TAB_HEADER":
+            return state.map((tab) => {
+                if (tab.id === action.tabId) {
+                    return { 
+                        ...tab,
+                        headers: [...tab.headers, getTabHeaderDefaultState()]
+                    };
+                }
+                return tab;
+            });
+        case "EDIT_TAB_HEADER":
+            return state.map((tab) => {
+                if (tab.id === action.tabId) {
+                    const headers = tab.headers.map((header) => {
+                        if (header.id === action.headerId) {
+                            return { 
+                                id: header.id, 
+                                key: action.key, 
+                                value: action.value,
+                            };
+                        }
+                        return header;
+                    });
+
+                    return { 
+                        ...tab,
+                        headers
+                    };
+                }
+                return tab;
+            });
+        case "REMOVE_TAB_HEADER":
+            return state.map((tab) => {
+                if (tab.id === action.tabId) {
+                    const headers = tab.headers.filter((header) => header.id !== action.headerId);
+
+                    return { 
+                        ...tab,
+                        headers
+                    };
+                }
+                return tab;
+            });
+        case "CLEAR_TAB_HEADER":
+            return state.map((tab) => {
+                if (tab.id === action.tabId) {
+                    return { 
+                        ...tab,
+                        headers: []
+                    };
+                }
+                return tab;
+            });
+
+        // Body
+        
+        case "ADD_TAB_BODY":
+            return state.map((tab) => {
+                if (tab.id === action.tabId) {
+                    return { 
+                        ...tab,
+                        bodyParams: [...tab.bodyParams, getTabBodyParamDefaultState()]
+                    };
+                }
+                return tab;
+            });
+
+        case "EDIT_TAB_BODY":
+            return state.map((tab) => {
+                if (tab.id === action.tabId) {
+                    const bodyParams = tab.bodyParams.map((body) => {
+                        if (body.id === action.bodyId) {
+                            return { 
+                                id: body.id, 
+                                key: action.key, 
+                                type: action.valueType, 
+                                value: action.value,
+                                file: action.file
+                            };
+                        }
+                        return body;
+                    });
+
+                    return { 
+                        ...tab,
+                        bodyParams
+                    };
+                }
+                return tab;
+            });
+        case "REMOVE_TAB_BODY":
+            return state.map((tab) => {
+                if (tab.id === action.tabId) {
+                    const bodyParams = tab.bodyParams.filter((body) => body.id !== action.bodyId);
+
+                    return { 
+                        ...tab,
+                        bodyParams
+                    };
+                }
+                return tab;
+            });
+        case "CLEAR_TAB_BODY":
+            return state.map((tab) => {
+                if (tab.id === action.tabId) {
+                    return { 
+                        ...tab,
+                        bodyParams: []
+                    };
+                }
+                return tab;
+            });
+
+        // Response
+
+        case "SET_TAB_RESPONSE":
+            return state.map((tab) => {
+                if (tab.id === action.tabId) {
+                    return { 
+                        ...tab,
+                        response: {
+                            statusCode: action.statusCode,
+                            responseData: isJsonParsable(action.responseData) ? action.responseData : { message: action.responseData },
+                            errorMessage: action.errorMessage
+                        }
+                    };
+                }
+                return tab;
+            });
+        case "CLEAN_TAB_RESPONSE":
+            return state.map((tab) => {
+                if (tab.id === action.tabId) {
+                    return { 
+                        ...tab,
+                        response: getTabResponseDefaultState()
+                    };
+                }
+                return tab;
+            });
+        
         default:
             return state;
     }

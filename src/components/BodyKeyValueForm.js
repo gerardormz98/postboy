@@ -3,26 +3,28 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import PostboyContext from "../context/postboyContext";
 import PostboyTabContext from "../context/postboyTabContext";
-import { editBody, removeBody } from "../actions/body";
+import { editTabBody, removeTabBody } from "../actions/tab";
 
 const KeyValueForm = ({ id, bodyKey, bodyType, bodyValue, bodyFile }) => {
-    const { dispatchBodyParams } = useContext(PostboyTabContext);
+    const { dispatchTabs } = useContext(PostboyContext);
+    const { tab } = useContext(PostboyTabContext);
 
     const handleKeyChange = (key) => {
-        dispatchBodyParams(editBody(id, key, bodyType, bodyValue, bodyFile));
+        dispatchTabs(editTabBody(tab.id, id, key, bodyType, bodyValue, bodyFile));
     };
 
     const handleTypeChange = (type) => {
-        dispatchBodyParams(editBody(id, bodyKey, type, "", null));
+        dispatchTabs(editTabBody(tab.id, id, bodyKey, type, "", null));
     };
 
     const handleEditValue = (value, file) => {
-        dispatchBodyParams(editBody(id, bodyKey, bodyType, value, file));
+        dispatchTabs(editTabBody(tab.id, id, bodyKey, bodyType, value, file));
     };
 
     const handleDeleteBody = () => {
-        dispatchBodyParams(removeBody(id));
+        dispatchTabs(removeTabBody(tab.id, id));
     };
 
     return (

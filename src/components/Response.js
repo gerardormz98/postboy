@@ -4,10 +4,10 @@ import PostboyTabContext from "../context/postboyTabContext";
 import { httpStatusCodes } from "../utils/constants";
 
 const PostboyTabContent = () => {
-    const { response } = useContext(PostboyTabContext);
+    const { tab } = useContext(PostboyTabContext);
 
     const getStatusCodeColorClass = () => {
-        switch (String(response.statusCode).charAt(0)) {
+        switch (String(tab.response.statusCode).charAt(0)) {
             case "2":
                 return "bg-success";
             case "4":
@@ -21,30 +21,30 @@ const PostboyTabContent = () => {
     return (
         <div>   
             {
-                !!response.statusCode &&
+                !!tab.response.statusCode &&
                 <div className={`response-status-code py-2 px-3 text-white border-top border-left border-right rounded-top ${getStatusCodeColorClass()}`}>
                     <span>
-                        Status code: <b>{response.statusCode}</b>  
+                        Status code: <b>{tab.response.statusCode}</b>  
                         {
-                            httpStatusCodes[response.statusCode] && 
-                            <span> ({httpStatusCodes[response.statusCode]})</span>
+                            httpStatusCodes[tab.response.statusCode] && 
+                            <span> ({httpStatusCodes[tab.response.statusCode]})</span>
                         }
                     </span>
                 </div>
             }
 
             {
-                response.errorMessage &&
+                tab.response.errorMessage &&
                 <div className="py-2 px-3 text-danger small border-top border-left border-right">
                     <span>
-                        {response.errorMessage}
+                        {tab.response.errorMessage}
                     </span>
                 </div>
             }
 
-            <div className={`p-2 border ${response.statusCode ? "rounded-bottom" : "rounded"}`}>
+            <div className={`p-2 border ${tab.response.statusCode ? "rounded-bottom" : "rounded"}`}>
                 <ReactJson 
-                    src={response.responseData}
+                    src={tab.response.responseData}
                     name={false}
                     collapsed={1}
                     iconStyle="square"

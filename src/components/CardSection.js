@@ -4,42 +4,43 @@ import Button from "react-bootstrap/Button";
 import Accordion from "react-bootstrap/Accordion";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faChevronRight, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+import PostboyContext from "../context/postboyContext";
 import PostboyTabContext from "../context/postboyTabContext";
 import HeaderKeyValueForm from "./HeaderKeyValueForm";
 import BodyKeyValueForm from "./BodyKeyValueForm";
-import { addHeader, clearHeader } from "../actions/headers";
-import { addBody, clearBody } from "../actions/body";
+import { addTabHeader, clearTabHeader, addTabBody, clearTabBody } from "../actions/tab";
 
 const CardSection = ({ title, emptyMessage, type }) => {
-    const { headers, dispatchHeaders, bodyParams, dispatchBodyParams } = useContext(PostboyTabContext);
+    const { dispatchTabs } = useContext(PostboyContext);
+    const { tab } = useContext(PostboyTabContext);
     const [ isCollapsed, setIsCollapsed ] = useState(false);
 
     const handleAddHeader = () => {
         setIsCollapsed(false);
-        dispatchHeaders(addHeader());
+        dispatchTabs(addTabHeader(tab.id));
     };
 
     const handleAddBody = () => {
         setIsCollapsed(false);
-        dispatchBodyParams(addBody());
+        dispatchTabs(addTabBody(tab.id));
     };
 
     const handleClearHeader = () => {
         setIsCollapsed(false);
-        dispatchHeaders(clearHeader());
+        dispatchTabs(clearTabHeader(tab.id));
     };
 
     const handleClearBody = () => {
         setIsCollapsed(false);
-        dispatchBodyParams(clearBody());
+        dispatchTabs(clearTabBody(tab.id));
     };
 
     const isEmpty = () => {
         if (type === "Header") {
-            return headers.length === 0;
+            return tab.headers.length === 0;
         }
         else if (type === "Body") {
-            return bodyParams.length === 0;
+            return tab.bodyParams.length === 0;
         }
     }
 
@@ -49,7 +50,7 @@ const CardSection = ({ title, emptyMessage, type }) => {
         }
         else {
             if (type === "Header") {
-                return headers.map((header) => {
+                return tab.headers.map((header) => {
                     return  <HeaderKeyValueForm 
                                 key={header.id} 
                                 id={header.id}
@@ -59,7 +60,7 @@ const CardSection = ({ title, emptyMessage, type }) => {
                 });
             }
             else if (type === "Body") {
-                return bodyParams.map((body) => {
+                return tab.bodyParams.map((body) => {
                     return  <BodyKeyValueForm 
                                 key={body.id}
                                 id={body.id}

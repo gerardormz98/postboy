@@ -7,6 +7,7 @@ import PostboyTabContent from "./PostboyTabContent";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import PostboyContext from "../context/postboyContext";
+import PostboyTabContext from "../context/postboyTabContext";
 import { addTab, removeTab } from "../actions/tab";
 
 const PostboyTabs = () => {
@@ -74,11 +75,11 @@ const PostboyTabs = () => {
                             <div className="d-flex align-items-center">
                                 {
                                     tab.isLoading &&
-                                    <Spinner animation="border" size="sm" className="mr-2" variant={getRequestMethodVariant(tab.method)} /> 
+                                    <Spinner animation="border" size="sm" className="mr-2" variant={getRequestMethodVariant(tab.request.method)} /> 
                                 }
 
                                 <div className="tab-title d-flex align-items-center justify-content-between">
-                                    <Badge pill variant={getRequestMethodVariant(tab.method)} className="mr-1">{tab.method}</Badge> - <span className="ml-1">{tab.title || "New request"}</span>
+                                    <Badge pill variant={getRequestMethodVariant(tab.request.method)} className="mr-1">{tab.request.method}</Badge> - <span className="ml-1">{tab.title || "New request"}</span>
                                 </div>
 
                                 {
@@ -89,7 +90,9 @@ const PostboyTabs = () => {
                         } 
                         tabClassName="text-secondary"
                     >
-                        <PostboyTabContent tabId={tab.id} />
+                        <PostboyTabContext.Provider value={{ tab }}>
+                            <PostboyTabContent tab={tab} />
+                        </PostboyTabContext.Provider>
                     </Tab>
                 ))
             }

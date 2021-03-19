@@ -1,24 +1,24 @@
 import React, { useContext, useEffect } from "react";
 import Form from "react-bootstrap/Form";
-import PostboyTabContext from "../context/postboyTabContext";
 import PostboyContext from "../context/postboyContext";
-import { setRequest } from "../actions/request";
-import { editTab } from "../actions/tab";
+import PostboyTabContext from "../context/postboyTabContext";
+import { setTabRequest, setTabTitle } from "../actions/tab";
 
 const RequestForm = () => {
-    const { tabId, request, dispatchRequest } = useContext(PostboyTabContext);
     const { dispatchTabs } = useContext(PostboyContext);
+    const { tab } = useContext(PostboyTabContext);
 
     useEffect(() => {
-        dispatchTabs(editTab(tabId, request.method, request.url));
-    }, [request, tabId, dispatchTabs]);
+        dispatchTabs(setTabTitle(tab.id, tab.request.url));
+        // eslint-disable-next-line
+    }, [tab.request]);
 
     const handleChangeMethod = (method) => {
-        dispatchRequest(setRequest(method, request.url));
+        dispatchTabs(setTabRequest(tab.id, method, tab.request.url));
     };
 
     const handleChangeUrl = (url) => {
-        dispatchRequest(setRequest(request.method, url));
+        dispatchTabs(setTabRequest(tab.id, tab.request.method, url));
     };
 
     return (
@@ -26,7 +26,7 @@ const RequestForm = () => {
             <Form.Control 
                 as="select" 
                 className="font-weight-bold mr-2 w-auto" 
-                value={request.method}
+                value={tab.request.method}
                 onChange={(e) => handleChangeMethod(e.target.value)}
             >
                 <option value="GET">GET</option>
@@ -40,7 +40,7 @@ const RequestForm = () => {
                 className="flex-grow-1"
                 required
                 placeholder="URL"
-                value={request.url}
+                value={tab.request.url}
                 onChange={(e) => handleChangeUrl(e.target.value)} />
         </div>
     );
