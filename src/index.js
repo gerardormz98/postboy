@@ -6,8 +6,6 @@ import MainPage from "./components/MainPage";
 
 import './styles/styles.scss';
 
-// TODO: Change context format (example in reducers/tab.js, https://stackoverflow.com/questions/61620841/handle-nested-context-providers)
-// TODO: Use localstorage to save current tabs.
 // TODO: Clear session button with alert.
 // TODO: About page with react router.
 

@@ -1,13 +1,42 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 import { Container } from "react-bootstrap";
 import PostboyTabs from "./PostboyTabs";
 
 import PostboyContext from "../context/postboyContext";
 import TabReducer from "../reducers/tab";
-import { getTabDefaultState } from "../utils/defaults";
+import { getTabDefaultState, getTabResponseDefaultState } from "../utils/defaults";
 
 const MainPage = () => {
-    const [tabs, dispatchTabs] = useReducer(TabReducer, [getTabDefaultState()]);
+    const getTabsInitialState = () => {
+        const cachedTabs = localStorage.getItem('postboyTabs');
+        try {
+            if (cachedTabs) {
+                return JSON.parse(cachedTabs);
+            }
+        }
+        catch {
+            return [getTabDefaultState()];
+        }
+        return [getTabDefaultState()];
+    }
+
+    const [tabs, dispatchTabs] = useReducer(TabReducer, getTabsInitialState());
+
+    useEffect(() => {
+        const persistTabs = tabs.map((tab) => {
+            return {
+                ...tab,
+                bodyParams: tab.bodyParams.map((param) => ({
+                    ...param,
+                    value: "",
+                    file: null
+                })),
+                response: getTabResponseDefaultState()
+            };
+        });
+
+        localStorage.setItem('postboyTabs', JSON.stringify(persistTabs));
+    }, [tabs]);
 
     return (
         <PostboyContext.Provider value={{
