@@ -1,0 +1,22 @@
+.card .card-header .card-header-title {
+    font-weight: 500;
+}
+
+.card .card-header .card-header-collapse {
+    cursor: pointer;
+    border: none;
+    background: inherit;
+}
+
+.card .card-header .card-header-collapse-icon {
+    transition: transform 0.05s;
+}
+
+.card .card-body > div:last-child {
+    margin-bottom: 0 !important;
+}
+
+.card .collapsing {
+    transition: none;
+    display: none;
+}

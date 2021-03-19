@@ -1,0 +1,22 @@
+.nav-tabs .nav-item.active {
+    font-weight: 500;
+    border-top: 2px solid $orange-light;
+}
+
+.nav-tabs .nav-add-tab,
+.nav-tabs .btn-close-tab {
+    color: #d1d1d1;
+}
+
+.nav-tabs .btn-close-tab:hover {
+    color: grey;
+}
+
+.nav-tabs .tab-content {
+    background: white;
+}
+
+.nav-tabs .nav-item .tab-title .badge {
+    font-size: 0.65rem;
+    transition: none;
+}
