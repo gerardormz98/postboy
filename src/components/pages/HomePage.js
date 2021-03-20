@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useReducer } from "react";
 import { Container } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import PostboyTabs from "./PostboyTabs";
-import Modal from "./Modal";
-import PostboyContext from "../context/postboyContext";
-import TabReducer from "../reducers/tab";
-import { getTabDefaultState, getTabResponseDefaultState } from "../utils/defaults";
-import { resetTabs } from "../actions/tab";
+import PostboyTabs from "../PostboyTabs";
+import Modal from "../Modal";
+import PostboyContext from "../../context/postboyContext";
+import TabReducer from "../../reducers/tab";
+import { getTabDefaultState, getTabResponseDefaultState } from "../../utils/defaults";
+import { resetTabs } from "../../actions/tab";
 
-const MainPage = () => {
+const HomePage = () => {
     const getTabsInitialState = () => {
         const cachedTabs = localStorage.getItem('postboyTabs');
         try {
@@ -91,4 +91,4 @@ const MainPage = () => {
     );
 };
 
-export default MainPage;
+export default HomePage;

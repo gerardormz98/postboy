@@ -20,3 +20,47 @@
     transition: none;
     display: none;
 }
+
+// Made with cards
+
+.made-with-card {
+    transition: all 0.1s ease-in;
+    height: 100%;
+
+    &:hover {
+        transform: scale(1.03);
+        box-shadow: 0px 10px 20px -15px rgba(0,0,0,0.75);
+    }
+}
+
+.made-with-card img {
+    height: 200px;
+    object-fit: scale-down;
+    background: $bg-grey !important;
+    border-bottom: 3px solid $primary;
+}
+
+.made-with-card a {
+    &,
+    &:visited,
+    &:hover,
+    &:active,
+    &:focus,
+    &:active:hover {
+        font-style: inherit;
+        color: inherit;
+        background-color: transparent;
+        font-size: inherit;
+        text-decoration: none;
+        font-variant: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        font-family: inherit;
+        border-radius: inherit;
+        border: inherit;
+        outline: inherit;
+        box-shadow: inherit;
+        padding: inherit;
+        vertical-align: inherit;
+    }
+}

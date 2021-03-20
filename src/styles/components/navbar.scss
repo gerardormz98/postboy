@@ -1,9 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
-.navbar-main {
-    border-bottom: 3px solid $orange-light;
+.navbar.navbar-main {
+    border-bottom: 3px solid $primary-light;
 }
 
-.navbar-brand {
+.navbar .navbar-brand {
     font-family: 'Righteous', cursive;
+}
+
+.navbar .nav-link.active {
+    font-weight: bold;
+}
+
+.navbar .nav-link:focus {
+    color: white !important;
 }

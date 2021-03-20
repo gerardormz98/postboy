@@ -1,0 +1,30 @@
+.socials-badge {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.socials-badge__icon {
+    color: white;
+    font-size: 1.5rem;
+}
+
+.socials-badge--github {
+    @extend .socials-badge;
+    background: $bg-github !important;
+
+    &:hover {
+        background: darken($bg-github, 10%) !important;
+    }
+}
+
+.socials-badge--linkedin {
+    @extend .socials-badge;
+    background: $bg-linkedin !important;
+
+    &:hover {
+        background: darken($bg-linkedin, 10%) !important;
+    }
+}
