@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
 .navbar-main {
     border-bottom: 3px solid $orange-light;
+}
+
+.navbar-brand {
+    font-family: 'Righteous', cursive;
 }

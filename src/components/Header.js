@@ -15,7 +15,7 @@ const Header = () => {
                         className="d-inline-block align-top"
                         alt="Postboy logo"
                     />
-                    <h5 className="ml-2 mb-0">Postboy</h5>
+                    <h4 className="ml-2 mb-0">Postboy</h4>
                 </Navbar.Brand>
                 <Nav>
                     <Nav.Link className="text-light">Home</Nav.Link>
