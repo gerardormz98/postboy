@@ -154,7 +154,7 @@ const PostboyTabContent = () => {
                     (tab.request.method !== "GET" && tab.request.method !== "DELETE") &&
                     <CardSection type="Body" title="Body" emptyMessage="Click the button to add a new body parameter." />
                 }
-                <Button className="mb-3" type="submit" disabled={tab.isLoading}>
+                <Button className="mb-4 mt-2" type="submit" disabled={tab.isLoading}>
                 {
                     tab.isLoading ? 
                         <span>Sending...</span>

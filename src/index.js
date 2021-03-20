@@ -6,9 +6,7 @@ import MainPage from "./components/MainPage";
 
 import './styles/styles.scss';
 
-// TODO: Clear session button with alert.
 // TODO: About page with react router.
-
 // TODO: Change tab title with double click.
 
 ReactDOM.render(

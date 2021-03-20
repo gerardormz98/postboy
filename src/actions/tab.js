@@ -21,6 +21,10 @@ export const removeTab = (tabId) => ({
     tabId
 });
 
+export const resetTabs = (tabId) => ({
+    type: 'RESET_TABS'
+});
+
 // Request
 
 export const setTabRequest = (tabId, method, url) => ({

@@ -68,6 +68,8 @@ const tabReducer = (state, action) => {
             });
         case "REMOVE_TAB":
             return state.filter((tab) => tab.id !== action.tabId);
+        case "RESET_TABS":
+            return [getTabDefaultState()];
 
         // Request
 

@@ -1,9 +1,11 @@
 @import-normalize;
-@import "~bootstrap/scss/bootstrap";
 @import "./base/base.scss";
 @import "./base/settings.scss";
+
+@import "~bootstrap/scss/bootstrap";
 @import "./components/nav-tabs.scss";
 @import "./components/card.scss";
 @import "./components/response.scss";
 @import "./components/navbar.scss";
+@import "./components/button.scss";
 @import "./components/react-autosuggest.scss";

@@ -16,7 +16,10 @@ const PostboyTabs = () => {
     const [ status, setStatus ] = useState(null);
 
     useEffect(() => {
-        if (status === "Adding") {
+        if (tabs.length === 1) {
+            setActiveTab(tabs[0].id);
+        }
+        else if (status === "Adding") {
             setActiveTab(tabs[tabs.length - 1].id);
         }
 
@@ -28,9 +31,9 @@ const PostboyTabs = () => {
             case "GET":
                 return "success";
             case "POST":
-                return "info";
-            case "PUT":
                 return "primary";
+            case "PUT":
+                return "info";
             case "PATCH":
                 return "warning";
             case "DELETE":
