@@ -77,7 +77,7 @@ const CardSection = ({ title, emptyMessage, type }) => {
         <div className="mb-3">
             <Accordion defaultActiveKey="0" activeKey={isCollapsed ? undefined : "0"}>
                 <Card>
-                    <Card.Header className="d-flex align-items-center justify-content-between">
+                    <Card.Header className={`d-flex align-items-center justify-content-between ${isCollapsed ? "border-bottom-0" : ""}`}>
                         <div className="d-flex align-items-center">
                             <Accordion.Toggle eventKey="0" className="card-header-collapse p-0" onClick={() => setIsCollapsed(!isCollapsed)}>
                                 <FontAwesomeIcon icon={faChevronRight} className={`card-header-collapse-icon ${isCollapsed ? undefined : 'fa-rotate-90'}`}/>

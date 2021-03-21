@@ -1,3 +1,7 @@
+.card .card-header {
+    transition: border-bottom-width 0.1s;
+}
+
 .card .card-header .card-header-title {
     font-weight: 500;
 }
@@ -19,6 +23,10 @@
 .card .collapsing {
     transition: none;
     display: none;
+}
+
+.accordion > .card {
+    overflow: inherit;
 }
 
 // Made with cards
