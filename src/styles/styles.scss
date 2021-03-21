@@ -1,5 +1,6 @@
 @import-normalize;
 @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
 @import "./base/base.scss";
 @import "./base/settings.scss";
@@ -12,3 +13,4 @@
 @import "./components/navbar.scss";
 @import "./components/button.scss";
 @import "./components/socials-badge.scss";
+@import "./components/footer.scss";

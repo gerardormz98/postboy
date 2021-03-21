@@ -6,7 +6,7 @@ import Nav from "react-bootstrap/Nav";
 
 const Header = () => {
     return (
-        <Navbar bg="dark" variant="dark" sticky="top" className="navbar-main py-2">
+        <Navbar bg="dark" variant="dark" fixed="top" className="navbar-main py-2">
             <Container>
                 <Navbar.Brand href="/" className="d-flex align-items-center">
                     <img

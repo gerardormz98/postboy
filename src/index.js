@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import AppRouter from "./router/AppRouter";
 import './styles/styles.scss';
 
-// TODO: Fix react autosuggest styles.
-// TODO: Create simple footer.
 // TODO: Change tab title with double click.
 
 ReactDOM.render(
