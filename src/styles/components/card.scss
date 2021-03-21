@@ -1,5 +1,5 @@
 .card .card-header {
-    transition: border-bottom-width 0.1s;
+    transition: border-bottom-width 0.2s;
 }
 
 .card .card-header .card-header-title {
@@ -27,6 +27,10 @@
 
 .accordion > .card {
     overflow: inherit;
+}
+
+.accordion > .card > .card-header {
+    margin-bottom: 0;
 }
 
 // Made with cards
