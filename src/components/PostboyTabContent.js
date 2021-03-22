@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
@@ -12,6 +12,16 @@ import { setTabIsLoading, setTabResponse, cleanTabResponse } from "../actions/ta
 const PostboyTabContent = () => {
     const { dispatchTabs } = useContext(PostboyContext);
     const { tab } = useContext(PostboyTabContext);
+    const [ axiosSource, setAxiosSource ] = useState(axios.CancelToken.source());
+
+    useEffect(() => {
+        return () => {
+            axiosSource.cancel();
+        };
+        // eslint-disable-next-line
+    }, []);
+
+    const tabHasFileParam = () => tab.bodyParams.some((param) => param.file && param.key && param.value);
 
     const handleSendRequest = () => {
         dispatchTabs(setTabIsLoading(tab.id, true));
@@ -19,81 +29,63 @@ const PostboyTabContent = () => {
 
         switch (tab.request.method) {
             case "GET":
-                axios.get(tab.request.url, { headers: getHeaderParams() }).then((res) => {
-                    dispatchTabs(setTabResponse(tab.id, res.status, res.data));
-                }).catch((err) => {
-                    if (err.response) {
-                        dispatchTabs(setTabResponse(tab.id, err.response.status, err.response.data, err.message));
-                    }
-                    else {
-                        dispatchTabs(setTabResponse(tab.id, "Unknown", {}, err.message || "An error has ocurred"));
-                    }
-                }).finally(() => {
-                    dispatchTabs(setTabIsLoading(tab.id, false));
-                });
+                axios.get(tab.request.url, getAxiosConfig())
+                    .then(requestSuccessHandler)
+                    .catch(requestErrorHandler)
+                    .finally(requestFinallyHandler);
                 break;
             case "POST":
-                axios.post(tab.request.url, getBodyParams(), { headers: getHeaderParams() }).then((res) => {
-                    dispatchTabs(setTabResponse(tab.id, res.status, res.data));
-                }).catch((err) => {
-                    if (err.response) {
-                        dispatchTabs(setTabResponse(tab.id, err.response.status, err.response.data, err.message));
-                    }
-                    else {
-                        dispatchTabs(setTabResponse(tab.id, "Unknown", {}, err.message || "An error has ocurred"));
-                    }
-                }).finally(() => {
-                    dispatchTabs(setTabIsLoading(tab.id, false));
-                });
+                axios.post(tab.request.url, getBodyParams(), getAxiosConfig())
+                    .then(requestSuccessHandler)
+                    .catch(requestErrorHandler)
+                    .finally(requestFinallyHandler);
                 break;
             case "PUT":
-                axios.put(tab.request.url, getBodyParams(), { headers: getHeaderParams() }).then((res) => {
-                    dispatchTabs(setTabResponse(tab.id, res.status, res.data));
-                }).catch((err) => {
-                    if (err.response) {
-                        dispatchTabs(setTabResponse(tab.id, err.response.status, err.response.data, err.message));
-                    }
-                    else {
-                        dispatchTabs(setTabResponse(tab.id, "Unknown", {}, err.message || "An error has ocurred"));
-                    }
-                }).finally(() => {
-                    dispatchTabs(setTabIsLoading(tab.id, false));
-                });
+                axios.put(tab.request.url, getBodyParams(), getAxiosConfig())
+                    .then(requestSuccessHandler)
+                    .catch(requestErrorHandler)
+                    .finally(requestFinallyHandler);
                 break;
             case "PATCH":
-                axios.patch(tab.request.url, getBodyParams(), { headers: getHeaderParams() }).then((res) => {
-                    dispatchTabs(setTabResponse(tab.id, res.status, res.data));
-                }).catch((err) => {
-                    if (err.response) {
-                        dispatchTabs(setTabResponse(tab.id, err.response.status, err.response.data, err.message));
-                    }
-                    else {
-                        dispatchTabs(setTabResponse(tab.id, "Unknown", {}, err.message || "An error has ocurred"));
-                    }
-                }).finally(() => {
-                    dispatchTabs(setTabIsLoading(tab.id, false));
-                });
+                axios.patch(tab.request.url, getBodyParams(), getAxiosConfig())
+                    .then(requestSuccessHandler)
+                    .catch(requestErrorHandler)
+                    .finally(requestFinallyHandler);
                 break;
             case "DELETE":
-                axios.delete(tab.request.url, { headers: getHeaderParams() }).then((res) => {
-                    dispatchTabs(setTabResponse(tab.id, res.status, res.data));
-                }).catch((err) => {
-                    if (err.response) {
-                        dispatchTabs(setTabResponse(tab.id, err.response.status, err.response.data, err.message));
-                    }
-                    else {
-                        dispatchTabs(setTabResponse(tab.id, "Unknown", {}, err.message || "An error has ocurred"));
-                    }
-                }).finally(() => {
-                    dispatchTabs(setTabIsLoading(tab.id, false));
-                });
+                axios.delete(tab.request.url, getAxiosConfig())
+                    .then(requestSuccessHandler)
+                    .catch(requestErrorHandler)
+                    .finally(requestFinallyHandler);
                 break;
             default:
                 break;
         }
     };
 
-    const tabHasFileParam = () => tab.bodyParams.some((param) => param.file && param.key && param.value);
+    const requestSuccessHandler = (res) => {
+        dispatchTabs(setTabResponse(tab.id, res.status, res.data));
+    };
+
+    const requestErrorHandler = (err) => {
+        if (!axios.isCancel(err)) {
+            if (err.response) {
+                dispatchTabs(setTabResponse(tab.id, err.response.status, err.response.data, err.message));
+            }
+            else {
+                dispatchTabs(setTabResponse(tab.id, "Unknown", {}, err.message || "An error has ocurred"));
+            }
+        }   
+    };
+
+    const requestFinallyHandler = () => {
+        dispatchTabs(setTabIsLoading(tab.id, false));
+    };
+
+    const getAxiosConfig = () => ({
+        headers: getHeaderParams(), 
+        cancelToken: axiosSource.token
+    });
 
     const getBodyParams = () => {
 
@@ -142,6 +134,12 @@ const PostboyTabContent = () => {
         return headersObj;
     };
 
+    const handleCancelClick = () => {
+        axiosSource.cancel();
+        setAxiosSource(axios.CancelToken.source());
+        dispatchTabs(setTabIsLoading(tab.id, false));
+    };
+
     return (
         <div className="p-3 bg-white border-bottom border-left border-right rounded-bottom">
             <Form onSubmit={(e) => {
@@ -154,14 +152,21 @@ const PostboyTabContent = () => {
                     (tab.request.method !== "GET" && tab.request.method !== "DELETE") &&
                     <CardSection type="Body" title="Body" emptyMessage="Click the button to add a new body parameter." />
                 }
-                <Button className="mb-4 mt-2" type="submit" disabled={tab.isLoading}>
-                {
-                    tab.isLoading ? 
-                        <span>Sending...</span>
-                    : 
-                        <span>Send request</span>
-                }
-                </Button>
+
+                <div className="mb-4 mt-2">
+                    <Button type="submit" disabled={tab.isLoading}>
+                    {
+                        tab.isLoading ? 
+                            <span>Sending...</span>
+                        : 
+                            <span>Send request</span>
+                    }
+                    </Button>
+                    {   
+                        tab.isLoading &&
+                        <Button variant="link" onClick={handleCancelClick}>Cancel</Button>
+                    }
+                </div>
             </Form>
             <Response />
         </div>

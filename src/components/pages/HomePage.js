@@ -29,6 +29,7 @@ const HomePage = () => {
         const persistTabs = tabs.map((tab) => {
             return {
                 ...tab,
+                isLoading: false,
                 bodyParams: tab.bodyParams.map((param) => ({
                     ...param,
                     value: "",
