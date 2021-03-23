@@ -2,10 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Badge from "react-bootstrap/Badge";
-import Spinner from "react-bootstrap/Spinner";
 import PostboyTabContent from "./PostboyTabContent";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faTimes, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import PostboyContext from "../context/postboyContext";
 import PostboyTabContext from "../context/postboyTabContext";
 import { addTab, removeTab } from "../actions/tab";
@@ -78,11 +77,11 @@ const PostboyTabs = () => {
                             <div className="d-flex align-items-center">
                                 {
                                     tab.isLoading &&
-                                    <Spinner animation="border" size="sm" className="mr-2" variant={getRequestMethodVariant(tab.request.method)} /> 
+                                    <FontAwesomeIcon icon={faSpinner} spin className={`mr-2 text-${getRequestMethodVariant(tab.request.method)}`} />
                                 }
 
                                 <div className="tab-title d-flex align-items-center justify-content-between">
-                                    <Badge pill variant={getRequestMethodVariant(tab.request.method)} className="mr-1">{tab.request.method}</Badge> - <span className="ml-1">{tab.title || "New request"}</span>
+                                    <Badge pill variant={getRequestMethodVariant(tab.request.method)} className="mr-1">{tab.request.method}</Badge> - <span className="ml-1 title-text">{tab.title}</span>
                                 </div>
 
                                 {

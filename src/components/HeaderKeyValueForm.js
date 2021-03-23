@@ -64,7 +64,7 @@ const KeyValueForm = ({ id, headerKey, headerValue }) => {
                             handleEditHeader({ key: newHeaderKey, value: headerValue });
                         },
                         onKeyPress: (e) => {
-                            if (e.charCode === 13 || e.key === 13 || e.keyIdentifier === 13 || e.keyCode === 13) 
+                            if (e.key === 'Enter') 
                                 e.preventDefault();
                         }
                     }}
@@ -80,7 +80,7 @@ const KeyValueForm = ({ id, headerKey, headerValue }) => {
                     handleEditHeader({ key: headerKey, value: newHeaderValue })
                 }}
                 onKeyPress={(e) => {
-                    if (e.charCode === 13 || e.key === 13 || e.keyIdentifier === 13 || e.keyCode === 13) 
+                    if (e.key === 'Enter') 
                         e.preventDefault();
                 }}
                 value={headerValue} />

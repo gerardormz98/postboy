@@ -1,5 +1,8 @@
 import { Guid } from "js-guid";
 
+export const defaultTabTitle = "Untitled request";
+export const defaultTabURL = "https://jsonplaceholder.typicode.com/posts";
+
 export const getTabResponseDefaultState = () => ({ 
     statusCode: 0,
     reponseData: {},
@@ -8,11 +11,12 @@ export const getTabResponseDefaultState = () => ({
 
 export const getTabDefaultState = () => ({ 
     id: Guid.newGuid().toString(), 
-    title: "New request", 
+    title: defaultTabURL || defaultTabTitle,
+    isCustomTitle: false,
     isLoading: false, 
     request: {
         method: 'GET',
-        url: 'https://jsonplaceholder.typicode.com/posts'
+        url: defaultTabURL
     },
     headers: [],
     bodyParams: [],

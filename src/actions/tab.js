@@ -4,10 +4,11 @@ export const addTab = () => ({
     type: 'ADD_TAB'
 });
 
-export const setTabTitle = (tabId, title) => ({
+export const setTabTitle = (tabId, title, isCustomTitle) => ({
     type: 'SET_TAB_TITLE',
     tabId,
-    title
+    title,
+    isCustomTitle
 });
 
 export const setTabIsLoading = (tabId, isLoading) => ({
@@ -21,7 +22,7 @@ export const removeTab = (tabId) => ({
     tabId
 });
 
-export const resetTabs = (tabId) => ({
+export const resetTabs = () => ({
     type: 'RESET_TABS'
 });
 

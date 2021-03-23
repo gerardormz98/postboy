@@ -1,11 +1,11 @@
-import { getTabDefaultState, getTabHeaderDefaultState, getTabBodyParamDefaultState, getTabResponseDefaultState } from "../utils/defaults";
+import { getTabDefaultState, getTabHeaderDefaultState, getTabBodyParamDefaultState, getTabResponseDefaultState, defaultTabTitle } from "../utils/defaults";
 import { isJsonParsable } from "../utils/utils";
 
 /*------------------------TAB STATE EXAMPLE------------------------
 [
     {
         id: '1',
-        title: 'New Request',
+        title: 'Untitled Request',
         isLoading: false,
         request: {
             method: 'GET',
@@ -47,11 +47,10 @@ const tabReducer = (state, action) => {
         case "SET_TAB_TITLE":
             return state.map((tab) => {
                 if (tab.id === action.tabId) {
-                    const tabLimitChars = 20;
-                    const title = action.title.substring(0, tabLimitChars) + (action.title.length > tabLimitChars ? "..." : "")
                     return { 
                         ...tab,
-                        title
+                        title: action.title || tab.request.url || defaultTabTitle,
+                        isCustomTitle: !!action.isCustomTitle
                     };
                 }
                 return tab;

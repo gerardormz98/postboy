@@ -1,0 +1,30 @@
+.tab-title__edit-button {
+    color: $primary;
+    cursor: pointer;
+    font-size: 1.1rem;
+
+    &:hover {
+        color: darken($primary, 10%);
+        transform: scale(1.05);
+    }
+}
+
+.tab-title__edit-input {
+    border: 0;
+    padding: 0;
+    font-weight: 500;
+    caret-color: $primary;
+
+    &:focus {
+        outline: none;
+        font-weight: 400;
+    }
+}
+
+.tab-title__edit-input::selection {
+    background: $text-selection-primary;
+}
+
+.tab-title__separator {
+    margin-top: 0.7rem;
+}

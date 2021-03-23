@@ -9,15 +9,18 @@ const RequestForm = () => {
     const { tab } = useContext(PostboyTabContext);
 
     useEffect(() => {
-        dispatchTabs(setTabTitle(tab.id, tab.request.url));
+        if (!tab.isCustomTitle) {
+            dispatchTabs(setTabTitle(tab.id, tab.request.url));
+        }
         // eslint-disable-next-line
-    }, [tab.request]);
+    }, [tab.request.url]);
 
     const handleChangeMethod = (method) => {
         dispatchTabs(setTabRequest(tab.id, method, tab.request.url));
     };
 
     const handleChangeUrl = (url) => {
+        url = url.replace(/\s/g, '');
         dispatchTabs(setTabRequest(tab.id, tab.request.method, url));
     };
 

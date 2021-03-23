@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
+import TabTitleForm from "./TabTitleForm";
 import RequestForm from "./RequestForm";
 import CardSection from "./CardSection";
 import Response from './Response';
@@ -146,6 +147,7 @@ const PostboyTabContent = () => {
                 e.preventDefault();
                 handleSendRequest();
             }}>
+                <TabTitleForm />
                 <RequestForm />
                 <CardSection type="Header" title="Headers" emptyMessage="Click the button to add a new header." />
                 {

@@ -35,7 +35,7 @@ const KeyValueForm = ({ id, bodyKey, bodyType, bodyValue, bodyFile }) => {
                 className="w-auto mr-2"
                 onChange={(e) => handleKeyChange(e.target.value)}
                 onKeyPress={(e) => {
-                    if (e.charCode === 13 || e.key === 13 || e.keyIdentifier === 13 || e.keyCode === 13) 
+                    if (e.key === 'Enter') 
                         e.preventDefault();
                 }}
                 value={bodyKey} />
@@ -65,7 +65,7 @@ const KeyValueForm = ({ id, bodyKey, bodyType, bodyValue, bodyFile }) => {
                         className="flex-grow-1 mr-2"
                         onChange={(e) => handleEditValue(e.target.value, null)}
                         onKeyPress={(e) => {
-                            if (e.charCode === 13 || e.key === 13 || e.keyIdentifier === 13 || e.keyCode === 13) 
+                            if (e.key === 'Enter') 
                                 e.preventDefault();
                         }}
                         value={bodyValue} />

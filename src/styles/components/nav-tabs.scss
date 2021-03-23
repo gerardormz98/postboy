@@ -3,6 +3,10 @@
     border-top: 2px solid $primary-light;
 }
 
+.nav-tabs .nav-item {
+    max-width: 250px;
+}
+
 .nav-tabs .nav-add-tab,
 .nav-tabs .btn-close-tab {
     color: #d1d1d1;
@@ -14,6 +18,16 @@
 
 .nav-tabs .tab-content {
     background: white;
+}
+
+.nav-tabs .nav-item .tab-title {
+    overflow: hidden;
+}
+
+.nav-tabs .nav-item .title-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .nav-tabs .nav-item .tab-title .badge {
