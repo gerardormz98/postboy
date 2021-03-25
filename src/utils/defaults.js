@@ -9,14 +9,14 @@ export const getTabResponseDefaultState = () => ({
     errorMessage: null
 });
 
-export const getTabDefaultState = () => ({ 
+export const getTabDefaultState = (hideExampleURL) => ({ 
     id: Guid.newGuid().toString(), 
-    title: defaultTabURL || defaultTabTitle,
+    title: hideExampleURL ? defaultTabTitle : defaultTabURL,
     isCustomTitle: false,
     isLoading: false, 
     request: {
         method: 'GET',
-        url: defaultTabURL
+        url: hideExampleURL ? '' : defaultTabURL
     },
     headers: [],
     bodyParams: [],

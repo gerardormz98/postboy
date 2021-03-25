@@ -43,7 +43,7 @@ const tabReducer = (state, action) => {
         // Tab
 
         case "ADD_TAB":
-            return [...state, getTabDefaultState()];
+            return [...state, getTabDefaultState(true)];
         case "SET_TAB_TITLE":
             return state.map((tab) => {
                 if (tab.id === action.tabId) {
