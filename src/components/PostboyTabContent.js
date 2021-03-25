@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTelegramPlane } from '@fortawesome/free-brands-svg-icons'
 import axios from "axios";
 import TabTitleForm from "./TabTitleForm";
 import RequestForm from "./RequestForm";
@@ -157,12 +159,13 @@ const PostboyTabContent = () => {
 
                 <div className="mb-4 mt-2">
                     <Button type="submit" disabled={tab.isLoading}>
-                    {
-                        tab.isLoading ? 
-                            <span>Sending...</span>
-                        : 
-                            <span>Send request</span>
-                    }
+                        <FontAwesomeIcon icon={faTelegramPlane} className="mr-2" />
+                        {
+                            tab.isLoading ? 
+                                <span>Sending...</span>
+                            : 
+                                <span>Send request</span>
+                        }
                     </Button>
                     {   
                         tab.isLoading &&
@@ -170,6 +173,7 @@ const PostboyTabContent = () => {
                     }
                 </div>
             </Form>
+
             <Response />
         </div>
     );

@@ -19,7 +19,7 @@ const PostboyTabContent = () => {
     };
     
     return (
-        <div>   
+        <div>
             {
                 !!tab.response.statusCode &&
                 <div className={`response-status-code py-2 px-3 text-white border-top border-left border-right rounded-top ${getStatusCodeColorClass()}`}>

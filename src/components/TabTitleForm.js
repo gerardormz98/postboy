@@ -1,6 +1,7 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-regular-svg-icons'
+import { faRedo } from '@fortawesome/free-solid-svg-icons'
 import PostboyContext from "../context/postboyContext";
 import PostboyTabContext from "../context/postboyTabContext";
 import { setTabTitle } from "../actions/tab";
@@ -20,6 +21,10 @@ const TabTitleForm = () => {
         setLocalTitle(tab.title);
         editInput.current.focus();
         editInput.current.select();
+    };
+
+    const handleResetClick = () => {
+        handleTitleCommit("");
     };
 
     const handleTitleChange = (title) => {
@@ -55,7 +60,13 @@ const TabTitleForm = () => {
                         onBlur={(e) => handleTitleCommit(e.target.value)}
                         onKeyPress={handleTitleKeyPress} />
                 }
-                <FontAwesomeIcon icon={faEdit} className="tab-title__edit-button" title="Edit tab title" onClick={() => handleEditClick()} />
+                <div>
+                    <FontAwesomeIcon icon={faEdit} className="tab-title__button" title="Edit tab title" onClick={() => handleEditClick()} />
+                    {
+                        tab.isCustomTitle &&
+                        <FontAwesomeIcon icon={faRedo} className="tab-title__button ml-2" title="Reset tab title" onClick={() => handleResetClick()} />
+                    }
+                </div>
             </div>
             <hr className="tab-title__separator" />
         </div>

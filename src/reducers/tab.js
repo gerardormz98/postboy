@@ -6,6 +6,7 @@ import { isJsonParsable } from "../utils/utils";
     {
         id: '1',
         title: 'Untitled Request',
+        isCustomTitle: false,
         isLoading: false,
         request: {
             method: 'GET',
