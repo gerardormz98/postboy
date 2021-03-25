@@ -20,6 +20,7 @@ const PostboyTabs = () => {
         }
         else if (status === "Adding") {
             setActiveTab(tabs[tabs.length - 1].id);
+            scrollToTheRight();
         }
 
         setStatus(null);
@@ -62,8 +63,17 @@ const PostboyTabs = () => {
         dispatchTabs(removeTab(tabs[tabIndex].id));
     };
 
+    const scrollToTheRight = () => {
+        const navTabs = document.getElementsByClassName("nav-tabs")[0];
+
+        navTabs.scrollTo({
+          top: 0,
+          left: Number.MAX_SAFE_INTEGER
+        });
+      };
+
     return (
-        <Tabs 
+        <Tabs
             transition={false} 
             onSelect={(tabId, e) => handleTabClick(tabId, e)}
             activeKey={activeTab}

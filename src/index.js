@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import AppRouter from "./router/AppRouter";
 import './styles/styles.scss';
 
-// TODO: Tab overflow scroll.
+// TODO: Only show example url on first tab.
 
+// TODO: Add tabs tree view on left side.
 // TODO: Add history bar feature.
 
 ReactDOM.render(
