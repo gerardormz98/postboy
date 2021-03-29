@@ -1,0 +1,9 @@
+@include media-breakpoint-down(xs) {
+    .jumbotron {
+      padding: 2rem;
+    }
+
+    .jumbotron .display-4 {
+        font-size: 3rem;
+    }
+}

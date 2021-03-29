@@ -28,3 +28,14 @@
         background: darken($bg-linkedin, 10%) !important;
     }
 }
+
+@include media-breakpoint-down(sm) {
+    .socials-badge {
+        width: 60px;
+        height: 60px;
+    }
+
+    .socials-badge__icon {
+        font-size: 1.8rem;
+    }
+}

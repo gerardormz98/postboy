@@ -48,7 +48,7 @@ const KeyValueForm = ({ id, headerKey, headerValue }) => {
     };
 
     return (
-        <div className="d-flex mb-2">
+        <div className="key-value-form d-flex mb-2">
             <div className="mr-2">
                 <Autosuggest
                     suggestions={suggestions}

@@ -8,7 +8,14 @@ const Header = () => {
         <div className="footer bg-dark">
             <Container className="h-100 d-flex align-items-center justify-content-between">
                 <span className="text-white-50 brand">Postboy</span>
-                <span className="text-white-50">Made with <FontAwesomeIcon icon={faHeart} /> by Gerardo Ramírez</span>
+
+                <span className="text-white-50 ml-3">
+                    <span>Made with <FontAwesomeIcon icon={faHeart} /> by </span>
+                    <a href="https://github.com/gerardormz98/" target="_blank" rel="noreferrer">
+                        <span className="d-none d-sm-inline-block">Gerardo Ramírez</span>
+                        <span className="d-inline-block d-sm-none">GR</span>
+                    </a>
+                </span>
             </Container>
         </div>
     );

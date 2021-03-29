@@ -55,7 +55,7 @@ const HomePage = () => {
                 <div className="my-4">
                     <div className="d-flex align-items-center justify-content-between">
                         <h3 className="mb-0">Online REST API client!</h3>
-                        <Button type="submit" variant="outline-primary" size="sm" onClick={() => setCloseTabsModalShow(true)}>
+                        <Button type="submit" variant="outline-primary" size="sm" className="ml-3" onClick={() => setCloseTabsModalShow(true)}>
                             Reset tabs
                         </Button>
                     </div>

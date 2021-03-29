@@ -12,6 +12,12 @@ html {
     margin-top: 64px;
 }
 
+@include media-breakpoint-down(xs) {
+    .main-content {
+        margin-top: 60px;
+    }
+}
+
 // Scrollbar
 
 body::-webkit-scrollbar {

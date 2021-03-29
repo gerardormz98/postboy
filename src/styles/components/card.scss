@@ -76,3 +76,19 @@
         vertical-align: inherit;
     }
 }
+
+@include media-breakpoint-down(xs) {
+    .card .card-header__buttons {
+        display: flex;
+        flex-direction: column;
+        
+        & button {
+            margin-left: 0 !important;
+        }
+
+        & .btn-clear {
+            order: 2;
+            margin-top: 0.5rem;
+        }
+    }
+}

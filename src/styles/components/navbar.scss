@@ -13,3 +13,9 @@
 .navbar .nav-link:focus {
     color: white !important;
 }
+
+@include media-breakpoint-down(xs) {
+    .navbar {
+        height: 60px;
+    }
+}

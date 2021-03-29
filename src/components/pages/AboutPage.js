@@ -13,18 +13,18 @@ const AboutPage = () => {
         <Animated animationIn="fadeIn" animationInDuration={500}>
             <Container className="my-4">
 
-                <Jumbotron >
+                <Jumbotron>
                     <Row>
-                        <Col xs={10} className="d-flex align-items-center">
+                        <Col xs={12} sm={12} md={9} lg={10} className="d-flex align-items-center">
                             <div>
                                 <h3 className="display-4">About Postboy</h3>
                                 <hr />
                                 <span className="lead">Postboy is a free, lightweight, simple online REST API client. It's designed to make your development process easier without having to download any extra software.</span>
                             </div>
                         </Col>
-                        <Col xs={2} className="d-flex align-items-center justify-content-center">
+                        <Col md={3} lg={2} className="d-flex align-items-center justify-content-center">
                             <img
-                                className="w-100"
+                                className="w-100 d-none d-md-block"
                                 src="img/postboy-logo.png"
                                 alt="Postboy Logo"
                             />
@@ -40,9 +40,7 @@ const AboutPage = () => {
                     <hr/>
 
                     <p className="lead">Postboy is really easy to use. Enter the url, add your parameters, and send the request. If what you need is a fast and simple way to test any REST API, Postboy is the solution.</p>
-
                     <p className="lead">Postboy also saves your requests in cache. So if you refresh or close the page by accident, no worries! All your tabs and custom parameters will be restored inmediately.</p>
-
                     <p className="lead">Here are some things you can do with Postboy:</p>
 
                     <ul className="lead">
@@ -60,9 +58,9 @@ const AboutPage = () => {
 
                     <hr/>
 
-                    <Row className="mb-4">
-                        <Col xs={3}>
-                            <Card className="made-with-card">
+                    <Row className="mb-3">
+                        <Col xs={12} sm={6} lg={3} className="mb-3">
+                            <Card className="made-with-card mb-3">
                                 <Card.Img variant="top" src="img/react-logo.png" className="p-5" />
                                 <Card.Body>
                                     <Card.Title>
@@ -75,8 +73,8 @@ const AboutPage = () => {
                             </Card>
                         </Col>
 
-                        <Col xs={3}>
-                            <Card className="made-with-card">
+                        <Col xs={12} sm={6} lg={3} className="mb-3">
+                            <Card className="made-with-card mb-3">
                                 <Card.Img variant="top" src="img/bootstrap-logo.png" className="p-5" />
                                 <Card.Body>
                                     <Card.Title>
@@ -89,8 +87,8 @@ const AboutPage = () => {
                             </Card>
                         </Col>
 
-                        <Col xs={3}>
-                            <Card className="made-with-card">
+                        <Col xs={12} sm={6} lg={3} className="mb-3">
+                            <Card className="made-with-card mb-3">
                                 <Card.Img variant="top" src="img/sass-logo.svg" className="p-5" />
                                 <Card.Body>
                                     <Card.Title>
@@ -103,7 +101,7 @@ const AboutPage = () => {
                             </Card>
                         </Col>
 
-                        <Col xs={3}>
+                        <Col xs={12} sm={6} lg={3} className="mb-3">
                             <Card className="made-with-card">
                                 <Card.Img variant="top" src="img/font-awesome-logo.png" className="p-5" />
                                 <Card.Body>

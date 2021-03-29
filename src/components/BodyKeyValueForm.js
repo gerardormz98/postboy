@@ -28,7 +28,7 @@ const KeyValueForm = ({ id, bodyKey, bodyType, bodyValue, bodyFile }) => {
     };
 
     return (
-        <div className="d-flex mb-2">
+        <div className="key-value-form d-flex mb-2">
             <Form.Control 
                 size="sm"
                 placeholder="Key"

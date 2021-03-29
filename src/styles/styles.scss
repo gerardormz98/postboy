@@ -3,9 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
 @import "./base/settings.scss";
+@import "~bootstrap/scss/bootstrap";
 @import "./base/base.scss";
 
-@import "~bootstrap/scss/bootstrap";
 @import "./components/react-autosuggest.scss";
 @import "./components/nav-tabs.scss";
 @import "./components/card.scss";
@@ -16,3 +16,7 @@
 @import "./components/footer.scss";
 @import "./components/tab-title.scss";
 @import "./components/react-json-view.scss";
+@import "./components/jumbotron.scss";
+@import "./components/key-value-form.scss";
+
+@import "./pages/about-page.scss";

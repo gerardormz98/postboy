@@ -1,0 +1,22 @@
+@include media-breakpoint-down(xs) {
+    .key-value-form {
+        display: flex;
+        flex-direction: column;
+
+        & > * {
+            margin-right: 0 !important;
+
+            &:not(:first-child) {
+                margin-top: 0.5rem;
+            }
+        }
+
+        & input {
+            width: 100% !important;
+        }
+
+        &:not(:first-child) {
+            margin-top: 1.5rem;
+        }
+    }
+}

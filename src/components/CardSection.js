@@ -73,6 +73,17 @@ const CardSection = ({ title, emptyMessage, type }) => {
         }
     };
 
+    const getItemsCount = () => {
+        if (!isEmpty()) {
+            if (type === "Header") {
+                return <span>({tab.headers.length})</span>;
+            }
+            else if (type === "Body") {
+                return <span>({tab.bodyParams.length})</span>;
+            }
+        }
+    };
+
     return (
         <div className="mb-3">
             <Accordion defaultActiveKey="0" activeKey={isCollapsed ? undefined : "0"}>
@@ -82,14 +93,15 @@ const CardSection = ({ title, emptyMessage, type }) => {
                             <Accordion.Toggle eventKey="0" className="card-header-collapse p-0" onClick={() => setIsCollapsed(!isCollapsed)}>
                                 <FontAwesomeIcon icon={faChevronRight} className={`card-header-collapse-icon ${isCollapsed ? undefined : 'fa-rotate-90'}`}/>
                             </Accordion.Toggle>
-                            <span className="card-header-title ml-3">{title}</span>
+                            <span className="card-header-title ml-3">{title} {getItemsCount()}</span>
                         </div>
-                        <div>
+                        <div className="card-header__buttons">
                             {
                                 !isEmpty() &&
                                 <Button 
                                     variant="secondary" 
                                     size="sm"
+                                    className="btn-clear"
                                     onClick={() => {
                                         if (type === "Header") {
                                             handleClearHeader();
@@ -105,7 +117,7 @@ const CardSection = ({ title, emptyMessage, type }) => {
                             <Button 
                                 variant="success" 
                                 size="sm"
-                                className="ml-2"
+                                className="ml-2 btn-add"
                                 onClick={() => {
                                     if (type === "Header") {
                                         handleAddHeader();
