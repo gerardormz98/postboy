@@ -59,29 +59,25 @@ const PostboyTabs = () => {
         if (activeTab === tabs[tabIndex].id) {
             setActiveTab(tabs[tabIndex === 0 ? 1 : tabIndex - 1].id);
         }
-        
+
         dispatchTabs(removeTab(tabs[tabIndex].id));
     };
 
     const scrollToTheRight = () => {
         const navTabs = document.getElementsByClassName("nav-tabs")[0];
-
-        navTabs.scrollTo({
-          top: 0,
-          left: Number.MAX_SAFE_INTEGER
-        });
+        navTabs.scrollLeft = Number.MAX_SAFE_INTEGER;
       };
 
     return (
         <Tabs
-            transition={false} 
+            transition={false}
             onSelect={(tabId, e) => handleTabClick(tabId, e)}
             activeKey={activeTab}
         >
             {
                 tabs.map((tab, idx) => (
-                    <Tab 
-                        key={tab.id} 
+                    <Tab
+                        key={tab.id}
                         eventKey={tab.id}
                         title={
                             <div className="d-flex align-items-center">
@@ -99,7 +95,7 @@ const PostboyTabs = () => {
                                     <FontAwesomeIcon icon={faTimes} className="ml-2 btn-close-tab" onClick={() => handleCloseTab(idx)} />
                                 }
                             </div>
-                        } 
+                        }
                         tabClassName="text-secondary"
                     >
                         <PostboyTabContext.Provider value={{ tab }}>
@@ -110,9 +106,9 @@ const PostboyTabs = () => {
             }
 
             <Tab
-                key="addTab" 
-                eventKey="addTab" 
-                title={<FontAwesomeIcon icon={faPlus}/>} 
+                key="addTab"
+                eventKey="addTab"
+                title={<FontAwesomeIcon icon={faPlus}/>}
                 tabClassName="nav-add-tab"
             >
             </Tab>
