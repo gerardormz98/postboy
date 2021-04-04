@@ -131,7 +131,7 @@ const CardSection = ({ title, emptyMessage, type }) => {
                             </Button>
                         </div>
                     </Card.Header>
-                    <Accordion.Collapse eventKey="0">
+                    <Accordion.Collapse className={`${isCollapsed ? "d-none" : ""}`} eventKey="0">
                         <Card.Body>
                         {
                             renderForms()
