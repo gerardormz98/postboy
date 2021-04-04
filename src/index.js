@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import AppRouter from "./router/AppRouter";
 import './styles/styles.scss';
 
+// TODO: Add warning to enable CORS if working in a personal project.
 // TODO: Add tabs tree view on left side.
 // TODO: Add history bar feature.
 

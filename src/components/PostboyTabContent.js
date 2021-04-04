@@ -72,11 +72,12 @@ const PostboyTabContent = () => {
 
     const requestErrorHandler = (err) => {
         if (!axios.isCancel(err)) {
+            console.log(err);
             if (err.response) {
                 dispatchTabs(setTabResponse(tab.id, err.response.status, err.response.data, err.message));
             }
             else {
-                dispatchTabs(setTabResponse(tab.id, "Unknown", {}, err.message || "An error has ocurred"));
+                dispatchTabs(setTabResponse(tab.id, "Unknown", {}, `${err.message || "An error has ocurred"}. Open the console (F12) for more details.`));
             }
         }   
     };

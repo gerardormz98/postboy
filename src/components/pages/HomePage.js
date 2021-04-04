@@ -32,7 +32,7 @@ const HomePage = () => {
                 isLoading: false,
                 bodyParams: tab.bodyParams.map((param) => ({
                     ...param,
-                    value: "",
+                    value: param.type === "Text" ? param.value : "",
                     file: null
                 })),
                 response: getTabResponseDefaultState()
