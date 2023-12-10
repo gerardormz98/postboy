@@ -5,7 +5,7 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 const Header = () => {
     return (
-        <div className="footer bg-dark">
+        <div className="footer bg-dark py-4">
             <Container className="h-100 d-flex align-items-center justify-content-between">
                 <span className="text-white-50 brand">Postboy</span>
 
